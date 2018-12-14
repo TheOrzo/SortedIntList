@@ -74,20 +74,23 @@ public class SortedIntList {
         return next;
     }
 
-    public void print() {
-        if (prev == null) {
-            System.out.print("[");
-        }
+    public String print() {
+        StringBuilder list = new StringBuilder();
+        list.append("[");
+        print(list);
+        return list.toString();
+    }
 
+    private void print(StringBuilder list) {
         if (value != null) {
-            System.out.print(value);
+            list.append(value);
         }
 
         if (next == null) {
-            System.out.println("]");
+            list.append("]");
         } else {
-            System.out.print(",");
-            next.print();
+            list.append(",");
+            next.print(list);
         }
     }
 

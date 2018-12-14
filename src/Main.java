@@ -9,6 +9,6 @@ public class Main {
         list.add(61);
         list.add(42);
 
-        list.print();
+        System.out.println(list.print());
     }
 }
