@@ -17,14 +17,14 @@ public class UserInterface {
         while (!exit) {
             Terminal.printLine("> ");
 
+            String[] cmd;
             String line = Terminal.readLine();
             switch(line.split(" ")[0]) {
                 case "quit":
-                    Terminal.printLine("Bye");
                     exit = true;
                     break;
                 case "add":
-                    String[] cmd = line.split(" ");
+                    cmd = line.split(" ");
                     if (cmd.length != 2) {
                         Terminal.printLine("Wrong amount of arguments. Usage: add [number to be added]");
                         return;
@@ -36,7 +36,19 @@ public class UserInterface {
                         Terminal.printLine(cmd[1] + " is supposed to be a number");
                     }
                     break;
+                case "get":
+                    cmd = line.split(" ");
+                    if (cmd.length != 2) {
+                        Terminal.printLine("Wrong amount of arguments. Usage: add [number to be added]");
+                        return;
+                    }
 
+                    if (cmd[1].matches("^[0-9]*$")) {
+                        Terminal.printLine(list.get(Integer.parseInt(cmd[1])));
+                    } else {
+                        Terminal.printLine(cmd[1] + " is supposed to be a possitive index number");
+                    }
+                    break;
                 case "print":
                     Terminal.printLine(list.print());
                     break;
