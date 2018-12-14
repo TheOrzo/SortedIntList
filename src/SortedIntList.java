@@ -23,7 +23,12 @@ public class SortedIntList {
         if (e < value) {
             SortedIntList element = new SortedIntList(this);
 
-            if (prev == null) {
+            if (prev == null && next == null) {
+                element.value = value;
+                value = e;
+                next = element;
+                element.setPrevElement(this);
+            } else if (prev == null) {
                 element.setNextElement(next);
                 next.setPrevElement(element);
                 next = element;
