@@ -55,7 +55,9 @@ public class UserInterface {
                 case "size":
                     Terminal.printLine(list.size());
                     break;
-
+                case "isEmpty":
+                    Terminal.printLine(list.isEmpty());
+                    break;
                     default:
                         Terminal.printLine("Command not found");
                         break;
