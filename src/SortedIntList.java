@@ -151,20 +151,31 @@ public class SortedIntList {
         }
     }
 
-    public void remove(int i) {
+    public boolean remove(int i) {
         if (i == 0) {
-            if (prev == null) {
+            if (prev == null && next == null) {
+                if (value == null) {
+                    return false;
+                } else {
+                    value = null;
+                }
+            } else if (prev == null) {
                 value = next.get(0);
                 next = next.getNextElement();
+            } else if (next == null) {
+                prev.setNextElement(null);
             } else {
                 prev.setNextElement(next);
                 next.setPrevElement(prev);
             }
+            return true;
         } else {
             if (next != null) {
-                next.remove(--i);
+                return next.remove(--i);
             }
         }
+
+        return false;
     }
 
     public boolean contains(int num) {
