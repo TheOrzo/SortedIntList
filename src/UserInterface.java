@@ -15,8 +15,6 @@ public class UserInterface {
 
     public void inputLoop() {
         while (!exit) {
-            Terminal.printLine("> ");
-
             String[] cmd;
             String line = Terminal.readLine();
             switch(line.split(" ")[0]) {
