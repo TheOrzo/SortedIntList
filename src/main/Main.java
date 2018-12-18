@@ -5,7 +5,7 @@ import test.ConsoleTest;
 public class Main {
 
     public static void main(String[] args) {
-        ConsoleTest test = new ConsoleTest("C:\\Users\\Tobih\\Desktop\\test1in.txt", "C:\\Users\\Tobih\\Desktop\\test1out.txt");
+        ConsoleTest test = new ConsoleTest("C:\\Users\\Tobih\\Desktop\\test2in.txt", "C:\\Users\\Tobih\\Desktop\\test2out.txt");
 
         SortedIntList list = new SortedIntList();       // create list to interact with
 

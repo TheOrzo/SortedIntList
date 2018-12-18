@@ -1,0 +1,25 @@
+size
+isEmpty
+print
+add 10
+print
+add 12
+add 1
+print
+get 0
+print
+contains 1
+add -2
+print
+remove -2
+print
+contains -2
+remove -2
+print
+add 10
+add 10
+print
+size
+indexOf 10
+lastIndexOf 10
+quit
