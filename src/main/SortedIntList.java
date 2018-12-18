@@ -277,7 +277,7 @@ public class SortedIntList {
             } else if (prev == null) {                      // is root node with following nodes
                 value = next.get(0);
                 next = next.getNextElement();
-                next.setPrevElement(this);
+                if (next != null) next.setPrevElement(this);
             } else if (next == null) {                      // last node in list
                 prev.setNextElement(null);
             } else {

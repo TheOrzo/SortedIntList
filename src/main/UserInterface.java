@@ -2,6 +2,7 @@ package main;
 
 import main.edu.kit.informatik.Terminal;
 import main.SortedIntList;
+import test.ConsoleTest;
 
 public class UserInterface {
 
