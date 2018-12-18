@@ -1,4 +1,7 @@
-import edu.kit.informatik.Terminal;
+package main;
+
+import main.edu.kit.informatik.Terminal;
+import main.SortedIntList;
 
 public class UserInterface {
 
@@ -6,6 +9,10 @@ public class UserInterface {
 
     private SortedIntList list;
 
+    /**
+     * Initializes the user interface.
+     * @param list List to interact with.
+     */
     public UserInterface(SortedIntList list) {
         exit = false;
         this.list = list;
@@ -13,7 +20,10 @@ public class UserInterface {
         inputLoop();
     }
 
-    public void inputLoop() {
+    /**
+     * Reads user inputs until user type quit and executes the typed commands.
+     */
+    private void inputLoop() {
         while (!exit) {
             String[] cmd;
             String line = Terminal.readLine();
@@ -52,13 +62,18 @@ public class UserInterface {
                     containsCmd(line);
                     break;
                     default:
-                        Terminal.printLine("Command not found");
+                        // command not found
                         break;
             }
         }
     }
 
+    /**
+     * adds a new number to the list
+     * @param line
+     */
     private void addCmd(String line) {
+        // validate the user input
         String[]cmd = line.split(" ");
         if (cmd.length != 2) {
             Terminal.printLine("Wrong amount of arguments. Usage: add [number to be added]");
@@ -66,13 +81,18 @@ public class UserInterface {
         }
 
         if (cmd[1].matches("^-?[0-9]*$")) {
-            list.add(Integer.parseInt(cmd[1]));
+            list.add(Integer.parseInt(cmd[1]));                         // execute the command
         } else {
             Terminal.printLine(cmd[1] + " is supposed to be a number");
         }
     }
 
+    /**
+     * Prints the number at the given index.
+     * @param line
+     */
     private void getCmd(String line) {
+        // validate the user input
         String[] cmd = line.split(" ");
         if (cmd.length != 2) {
             Terminal.printLine("Wrong amount of arguments. Usage: get [index]");
@@ -86,7 +106,12 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prints the first index of the given number.
+     * @param line
+     */
     private void indexOfCmd(String line) {
+        // validate the user input
         String[] cmd = line.split(" ");
         if (cmd.length != 2) {
             Terminal.printLine("Wrong amount of arguments. Usage: indexOf [number to be found]");
@@ -100,7 +125,12 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Prints the last index of the given number.
+     * @param line
+     */
     private void lastIndexOfCmd(String line) {
+        // validate the user input
         String[] cmd = line.split(" ");
         if (cmd.length != 2) {
             Terminal.printLine("Wrong amount of arguments. Usage: lastIndexOf [number to be found]");
@@ -114,20 +144,29 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Removes the first appearance of the given number.
+     * @param line
+     */
     private void removeCmd(String line) {
+        // validate the user input
         String[] cmd = line.split(" ");
         if (cmd.length != 2) {
             Terminal.printLine("Wrong amount of arguments. Usage: remove [index to be removed]");
             return;
         }
 
-        if (cmd[1].matches("^[0-9]*$")) {
+        if (cmd[1].matches("^-?[0-9]*$")) {
             Terminal.printLine(list.remove(Integer.parseInt(cmd[1])));
         } else {
-            Terminal.printLine(cmd[1] + " is supposed to be a possitive index number");
+            Terminal.printLine(cmd[1] + " is supposed to be a number");
         }
     }
 
+    /**
+     * Returns if the list contains the given number
+     * @param line
+     */
     private void containsCmd(String line) {
         String[] cmd = line.split(" ");
         if (cmd.length != 2) {

@@ -1,3 +1,5 @@
+package main;
+
 public class SortedIntList {
 
     private SortedIntList next = null;
@@ -6,14 +8,14 @@ public class SortedIntList {
     private Integer value = null;
 
     /**
-     * empty constructor
+     * Empty constructor
      */
     public SortedIntList() {
 
     }
 
     /**
-     * constructor to link in at the end of the list
+     * Constructor to link in at the end of the list
      * @param prev previous node
      */
     public SortedIntList(SortedIntList prev) {
@@ -21,7 +23,7 @@ public class SortedIntList {
     }
 
     /**
-     * adds a new value to the list, at the correctly sorted position
+     * Adds a new value to the list, at the correctly sorted position
      * @param e element to be added
      */
     public void add(int e) {
@@ -31,8 +33,8 @@ public class SortedIntList {
             return;
         }
 
-        // add element here if the current position fits to the element
-        if (e < value) {
+        // Add element here if the current position fits to the element
+        if (e <= value) {
             SortedIntList element = new SortedIntList(this);    // element to be added
 
             if (prev == null && next == null) {                      // there is just the current node in the list
@@ -96,7 +98,7 @@ public class SortedIntList {
 
     /**
      *
-     * @param id position of the element
+     * @param id Position of the element
      * @return Value at specified position
      */
     public int get(int id) {
@@ -112,6 +114,13 @@ public class SortedIntList {
      */
     private SortedIntList getNextElement() {
         return next;
+    }
+
+    /**
+     * @return Previous element of the list
+     */
+    private SortedIntList getPrevElement() {
+        return prev;
     }
 
     /**
@@ -163,7 +172,7 @@ public class SortedIntList {
     }
 
     /**
-     * calculates the size of the list recursive
+     * Calculates the size of the list recursive
      * @param i
      * @return
      */
@@ -176,7 +185,7 @@ public class SortedIntList {
     }
 
     /**
-     * empty the list
+     * Empty the list
      */
     public void clear() {
         next = null;
@@ -239,22 +248,37 @@ public class SortedIntList {
     }
 
     /**
+     * Removes the first appearance of the given number.
+     * @param num Number to be removed
+     * @return True when sucess. False when failed.
+     */
+    public boolean remove(int num) {
+        int index = indexOf(num);
+        if (index == -1) {
+            return false;
+        }
+
+        return removeIndex(index);
+    }
+
+    /**
      * Removes the element at the given index.
      * @param i Index to be removed.
-     * @return True when success. False when fail.
+     * @return True when success. False when failed.
      */
-    public boolean remove(int i) {
+    public boolean removeIndex(int i) {
         if (i == 0) {
-            if (prev == null && next == null) {
-                if (value == null) {
+            if (prev == null && next == null) {             // singe root node
+                if (value == null) {                        // empty list
                     return false;
                 } else {
                     value = null;
                 }
-            } else if (prev == null) {
+            } else if (prev == null) {                      // is root node with following nodes
                 value = next.get(0);
                 next = next.getNextElement();
-            } else if (next == null) {
+                next.setPrevElement(this);
+            } else if (next == null) {                      // last node in list
                 prev.setNextElement(null);
             } else {
                 prev.setNextElement(next);
@@ -263,7 +287,7 @@ public class SortedIntList {
             return true;
         } else {
             if (next != null) {
-                return next.remove(--i);
+                return next.removeIndex(--i);
             }
         }
 
