@@ -45,10 +45,6 @@ public class ConsoleTest implements Runnable {
         System.setOut(defaultOut);
         System.setIn(defaultIn);
 
-        if (outFile.length() != cmpFile.length()) {
-            return false;
-        }
-
         try {
             Scanner out = new Scanner(this.outFile);
             Scanner cmp = new Scanner(this.cmpFile);
@@ -57,6 +53,10 @@ public class ConsoleTest implements Runnable {
                 if (!(out.next().equals(cmp.next()))) {
                     return false;
                 }
+            }
+
+            if (out.hasNext() || cmp.hasNext()) {
+                return false;
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
